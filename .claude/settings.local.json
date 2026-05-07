@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem e:\\\\Claud\\\\infix-solutions\\\\assets\\\\images -Recurse | Select-Object Name, @{n='KB';e={[math]::Round\\($_.Length/1KB\\)}} | Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem -Path e:\\\\Claud -Directory -Force | Where-Object { $_.Name -match 'public|Public|infix' } | Select-Object FullName | Format-Table -AutoSize; Get-ChildItem -Path e:\\\\Claud -File -Force -ErrorAction SilentlyContinue | Select-Object Name | Format-Table -AutoSize)",
+      "PowerShell(Get-ChildItem -Path e:\\\\Claud\\\\Public -Recurse -Force | Select-Object FullName, @{n='KB';e={[math]::Round\\($_.Length/1KB,1\\)}} | Format-Table -AutoSize)",
+      "PowerShell(if \\(-not \\(Test-Path e:\\\\Claud\\\\infix-solutions\\\\assets\\\\images\\)\\) { New-Item -Path e:\\\\Claud\\\\infix-solutions\\\\assets\\\\images -ItemType Directory -Force | Out-Null }; Copy-Item -Path e:\\\\Claud\\\\Public\\\\logo.png -Destination e:\\\\Claud\\\\infix-solutions\\\\assets\\\\images\\\\logo.png -Force; Get-Item e:\\\\Claud\\\\infix-solutions\\\\assets\\\\images\\\\logo.png | Select-Object FullName, @{n='KB';e={[math]::Round\\($_.Length/1KB,1\\)}})",
+      "PowerShell(Test-Path e:\\\\Claud\\\\infix-solutions\\\\assets\\\\images\\\\logo.png; \\(Get-Item e:\\\\Claud\\\\infix-solutions\\\\assets\\\\images\\\\logo.png\\).Length)",
+      "PowerShell($ids = @\\('1565008576549-57569a49371b','1604709177595-ee9c2580e9a4','1581244277943-fe4a9c777189','1426927308491-6380b6a9936f','1530023367847-a683933f4172','1565514020179-026b92b84bb6'\\); foreach\\($id in $ids\\){ try { $r = Invoke-WebRequest -Uri \"https://images.unsplash.com/photo-$id?w=200\" -Method Head -TimeoutSec 8 -ErrorAction Stop; \"$id => OK \\($\\($r.StatusCode\\)\\)\" } catch { \"$id => FAIL \\($\\($_.Exception.Message\\)\\)\" } })"
+    ]
+  }
+}
